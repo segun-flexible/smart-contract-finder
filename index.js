@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded",()=>{
     })
 
     //Auto Submit
-    form.querySelector("input").addEventListener("change",e =>{
+    form.querySelector("input").addEventListener("input",e =>{
         //Check If Contract Type Is Selected
         if(form.querySelector("select").value){
 
