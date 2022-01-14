@@ -20,7 +20,42 @@ document.addEventListener("DOMContentLoaded",()=>{
             name: e.currentTarget.querySelector("input").value
         }
 
-        fetch(`https://api.coingecko.com/api/v3/coins/${obj.id}/contract/${obj.name}`).then(res => res.json()).then(res => {
+        fetcher(obj.id,obj.name)
+        
+    })
+
+    //Auto Submit
+    form.querySelector("input").addEventListener("change",e =>{
+        //Check If Contract Type Is Selected
+        if(form.querySelector("select").value){
+
+            result.style.display = "none"
+            spinner(true)
+            const obj = {
+                id: form.querySelector("select").value,
+                name: form.querySelector("input").value
+            }
+
+            fetcher(obj.id,obj.name)
+
+        }else return alert("Select A Contract Type")
+        
+    })
+
+    //Spinner
+    function spinner(status){
+        const spinnerWrapper = document.querySelector("#spinner");
+
+        if(status){
+            spinnerWrapper.style.display = "flex";
+        }else{
+            spinnerWrapper.style.display = "none";
+        }
+        
+    }
+
+    function fetcher(id,name){
+        fetch(`https://api.coingecko.com/api/v3/coins/${id}/contract/${name}`).then(res => res.json()).then(res => {
 
             spinner(false)
             
@@ -58,19 +93,5 @@ document.addEventListener("DOMContentLoaded",()=>{
             
 
         }).catch(err => alert(err.message))
-    })
-
-    //Spinner
-    function spinner(status){
-        const spinnerWrapper = document.querySelector("#spinner");
-
-        if(status){
-            spinnerWrapper.style.display = "flex";
-        }else{
-            spinnerWrapper.style.display = "none";
-        }
-        
     }
 })
-
-//https://api.coingecko.com/api/v3/asset_platforms
