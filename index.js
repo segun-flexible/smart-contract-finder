@@ -44,12 +44,12 @@ document.addEventListener("DOMContentLoaded",()=>{
 
     //Spinner
     function spinner(status){
-        const spinnerWrapper = document.querySelector("#spinner");
+        const spinnerBtn = form.querySelector("button");
 
         if(status){
-            spinnerWrapper.style.display = "flex";
+            spinnerBtn.innerHTML = `<div class="spinner-border text-white" role="status"><span class="visually-hidden">Loading...</span></div>`
         }else{
-            spinnerWrapper.style.display = "none";
+            spinnerBtn.innerHTML = `Find`
         }
         
     }
@@ -95,3 +95,5 @@ document.addEventListener("DOMContentLoaded",()=>{
         }).catch(err => alert(err.message))
     }
 })
+
+//https://api.coingecko.com/api/v3/asset_platforms
